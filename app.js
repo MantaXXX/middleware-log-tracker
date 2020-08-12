@@ -13,7 +13,12 @@ app.use((req, res, next) => {
   let sec = startTime.getSeconds()
   let milliSec = startTime.getMilliseconds()
   let now = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec + ' ' + req.method + ' ' + 'from' + ' ' + req.originalUrl
-  console.log(now)
+  res.on('finish', () => {
+    let endTime = new Date()
+    let runTime = endTime - startTime
+    let serverLog = now + ' ' + req.method + ' ' + 'from' + ' ' + req.originalUrl + ' ' + 'duration:' + ' ' + runTime + 'ms'
+    console.log(serverLog)
+  })
   next()
 })
 
