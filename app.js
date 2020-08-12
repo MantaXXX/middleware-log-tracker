@@ -1,5 +1,4 @@
 const express = require('express')
-const responseTime = require('moment-timezone')
 const app = express()
 const port = 3000
 
@@ -11,7 +10,6 @@ app.use((req, res, next) => {
   let hour = startTime.getHours()
   let min = startTime.getMinutes()
   let sec = startTime.getSeconds()
-  let milliSec = startTime.getMilliseconds()
   let now = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec + ' ' + req.method + ' ' + 'from' + ' ' + req.originalUrl
   res.on('finish', () => {
     let endTime = new Date()
